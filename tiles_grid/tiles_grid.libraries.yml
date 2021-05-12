@@ -1,0 +1,18 @@
+default:
+  js:
+    js/tiles_grid.js: {}
+  css:
+    component:
+      css/tiles_grid.css: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupalSettings
+
+isotope:
+  version: 3.0.6
+  js:
+    /libraries/isotope-layout/dist/isotope.pkgd.min.js: { minified: true }
+  dependencies:
+    - core/jquery
+    - core/drupal

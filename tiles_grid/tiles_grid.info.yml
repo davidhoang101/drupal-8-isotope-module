@@ -1,0 +1,8 @@
+name: 'Tiles grid'
+type: module
+description: 'Tiles grid component'
+core: 8.x
+dependencies:
+  - drupal:views
+  - entityqueue
+package: 'Custom'

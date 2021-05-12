@@ -1,0 +1,39 @@
+<?php 
+
+/**
+ * @file
+ * Install, update and uninstall functions for the tiles_grid module.
+ */
+
+/**
+ * Implements hook_install().
+ */
+function tiles_grid_install() {
+  \Drupal::messenger()->addMessage(t('Thanks for installing Tiles grid'));
+}
+
+/**
+ * Implements hook_requirements().
+ */
+function tiles_grid_requirements($phase) {
+  if ($phase != 'runtime') {
+    return [];
+  }
+
+  $requirements = [];
+
+  $path = DRUPAL_ROOT . '/libraries/isotope-layout/dist/isotope.pkgd.min.js';
+
+  if (!file_exists($path)) {
+    $requirements['isotope'] = array(
+      'title' => t('isotope library missing'),
+      'value' => t('Not installed'),
+      'description' => t(
+        'tiles_grid requires the isotope library. Download https://github.com/metafizzy/isotope/archive/refs/heads/master.zip and extract it to /libraries'
+      ),
+      'severity' => REQUIREMENT_ERROR,
+    );
+  }
+
+  return $requirements;
+}

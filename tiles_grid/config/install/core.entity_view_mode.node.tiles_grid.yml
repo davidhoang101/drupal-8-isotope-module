@@ -1,0 +1,9 @@
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: node.tiles_grid
+label: 'Tiles grid'
+targetEntityType: node
+cache: true

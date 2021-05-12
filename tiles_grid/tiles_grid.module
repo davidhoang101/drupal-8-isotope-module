@@ -1,0 +1,134 @@
+<?php
+
+/**
+ * @file
+ * Contains tiles_grid.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\taxonomy\Entity\Term;
+use Drupal\views\ViewExecutable;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\file\Entity\File;
+use Drupal\Core\Url;
+
+/**
+ * Implements hook_help().
+ */
+function tiles_grid_help($route_name, RouteMatchInterface $route_match) {
+  switch ($route_name) {
+    // Main module help for the tiles_grid module.
+    case 'help.page.tiles_grid':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Tiles grid component') . '</p>';
+      return $output;
+
+    default:
+  }
+}
+
+/**
+ * Implements hook_theme().
+ */
+function tiles_grid_theme() {
+  $hooks = [];
+
+  $hooks['node__tile__tiles_grid'] = [
+      'template' => 'node--tile--tiles-grid',
+      'base hook' => 'node'
+    ];
+
+  $hooks['views_view_unformatted__tiles_grid__page_1'] = [
+      'template' => 'views-view-unformatted--tiles_grid--page_1',
+      'base hook' => 'view'
+    ];
+
+  return $hooks;
+}
+
+/**
+ * Implements template_preprocess_node
+ *
+ */
+function tiles_grid_preprocess_node__tile__tiles_grid(&$variables) {
+  $node = $variables['node'];
+  $tag_icons = [];
+  $tag_ids = [];
+  //Get article's tags
+  if($node->hasField('field_article')) {
+    $article = $node->get('field_article')->referencedEntities();
+
+    $article = !empty($article) ? reset($article) : NULL;
+    $article_tags = !empty($article) ? $article->field_tags->getValue() : NULL;
+
+    $tile_tags = $node->field_tags->getValue();
+
+    $tags = !empty($article_tags) ? $article_tags : $tile_tags;
+
+    foreach ($tags as $tag) {
+      $term = Term::load($tag['target_id']);
+      $tag_ids[] = 'term_' . $term->id();
+
+      $file = $term->field_icon->entity;
+      if (!empty($file)) {
+        $file = File::load($file->id());
+        $uri = $file->getFileUri();
+        $tag_icons[] = Url::fromUri(file_create_url($uri))->toString();
+      }
+
+    }
+  }
+
+  //Get video url
+  $video = $node->field_video_url->getValue();
+  $variables['video_url'] = !empty($video[0]['uri']) ? $video[0]['uri'] : NULL;
+  
+  $variables['tag_icons'] = $tag_icons;
+  $variables['tag_ids'] = !empty($tag_ids) ? implode(' ', $tag_ids) : '';
+}
+
+
+/**
+* Implements hook_views_pre_render().
+*/
+function tiles_grid_views_pre_render(ViewExecutable $view) {
+  if (isset($view) && ($view->storage->id() == 'tiles_grid')) {
+    $view->element['#attached']['library'][] = 'tiles_grid/default';
+    $view->element['#attached']['library'][] = 'tiles_grid/isotope';
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function tiles_grid_form_alter(&$form, FormStateInterface $form_state, $form_id){
+  //Convert dropdown to ul li
+  if($form['#id'] == 'views-exposed-form-tiles-grid-page-1') {
+    $form['#attached']['library'][] = 'tiles_grid/default'; 
+    $tags = $form['tags']['#options'];
+    $i = 0;
+    $items = [];
+    foreach ($tags as $tid => $term_name) {
+      $filter_id = 'term_' . $tid;
+      if ($tid == 'All') {
+        $items[$i]['#markup'] = '<span class="filter is-checked" data-drupal-filter="all">' . t('All') . '</span>';
+      }
+      else {
+        $items[$i]['#markup'] = '<span class="filter" data-drupal-filter="'.$filter_id.'">' . $term_name . '</span>';
+      }
+      $i++; 
+    } 
+  
+    $form['links'] = [
+      '#theme' => 'item_list',
+      '#items' => $items,
+      '#attributes' => ['class' => ['tiles-grid-filters']],
+    ]; 
+
+    unset($form['#info']);
+    unset($form['tags']);
+    unset($form['actions']);
+  } 
+}
+
