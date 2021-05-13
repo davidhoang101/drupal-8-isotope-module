@@ -27,7 +27,7 @@ This module requires the following modules:
 
 INSTALLATION
 ------------
-
+* Download and install Entityqueue module
 * Install the Tiles Grid module as you would normally install a contributed Drupal module
 
 
