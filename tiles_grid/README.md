@@ -33,6 +33,7 @@ INSTALLATION
 
 CONFIGURATION
 -------------
-- Once installed, the Tiles Grid module will be create a view named Tiles Grid
+- Once installed these stuffs will be created: tile content type, tiles grid view, featured tiles entityqueue
 - Navigate to Administration > Structure > Views -> Tiles Grid and use that block or page
+- Visit siteurl/frontp to see the result
 
