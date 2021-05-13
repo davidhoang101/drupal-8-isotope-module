@@ -33,7 +33,11 @@ INSTALLATION
 
 CONFIGURATION
 -------------
-- Once installed these stuffs will be created: tile content type, tiles grid view, featured tiles entityqueue
++ Once installed these stuffs will be created: 
+	- Content type: tile
+	- Views: tiles grid 
+	- Role: Content Manager
+	- Entity queue: Featured tiles
 - Navigate to Administration > Structure > Views -> Tiles Grid and use that block or page
 - Visit siteurl/frontp to see the result
 
