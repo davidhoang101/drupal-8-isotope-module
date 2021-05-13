@@ -15,6 +15,9 @@ dependencies:
     - node
     - taxonomy
     - user
+  enforced:
+    module:
+      - tiles_grid
 _core:
   default_config_hash: KPdk7af4nSfk5U6TXyWDCSKGN2cKBZBvaGhInN_Ff3w
 id: tiles_grid

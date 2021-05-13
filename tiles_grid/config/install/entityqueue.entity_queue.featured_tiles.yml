@@ -3,6 +3,9 @@ status: true
 dependencies:
   module:
     - node
+  enforced:
+    module:
+      - tiles_grid
 id: featured_tiles
 label: 'Featured Tiles'
 handler: simple

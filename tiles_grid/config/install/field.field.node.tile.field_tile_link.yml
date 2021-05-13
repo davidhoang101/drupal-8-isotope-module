@@ -1,6 +1,9 @@
 langcode: en
 status: true
 dependencies:
+  enforced:
+    module:
+      - tiles_grid
   config:
     - field.storage.node.field_tile_link
     - node.type.tile

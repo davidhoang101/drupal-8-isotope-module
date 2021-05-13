@@ -1,6 +1,9 @@
 langcode: en
 status: true
-dependencies: {  }
+dependencies:
+  enforced:
+    module:
+      - tiles_grid
 id: content_manager
 label: 'Content Manager'
 weight: 3

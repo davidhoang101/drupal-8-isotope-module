@@ -3,6 +3,9 @@ status: true
 dependencies:
   module:
     - node
+  enforced:
+    module:
+      - tiles_grid
 id: node.tiles_grid
 label: 'Tiles grid'
 targetEntityType: node

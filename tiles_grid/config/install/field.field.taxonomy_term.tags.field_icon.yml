@@ -1,6 +1,9 @@
 langcode: en
 status: true
 dependencies:
+  enforced:
+    module:
+      - tiles_grid
   config:
     - field.storage.taxonomy_term.field_icon
     - taxonomy.vocabulary.tags

@@ -10,6 +10,9 @@ dependencies:
     - node.type.article
   module:
     - user
+  enforced:
+    module:
+      - tiles_grid
 _core:
   default_config_hash: ChmU3AVqDKU32A_fyChG0W9dTRKmVBR58B6OClCLvZI
 id: node.article.tiles_grid

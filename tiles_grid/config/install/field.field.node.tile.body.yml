@@ -6,6 +6,9 @@ dependencies:
     - node.type.tile
   module:
     - text
+  enforced:
+    module:
+      - tiles_grid
 id: node.tile.body
 field_name: body
 entity_type: node

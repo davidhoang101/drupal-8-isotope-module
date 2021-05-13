@@ -13,6 +13,9 @@ dependencies:
   module:
     - image
     - user
+  enforced:
+    module:
+      - tiles_grid
 id: node.tile.tiles_grid
 targetEntityType: node
 bundle: tile
