@@ -1,0 +1,33 @@
+langcode: en
+status: true
+dependencies: {  }
+id: content_manager
+label: 'Content Manager'
+weight: 3
+is_admin: null
+permissions:
+  - 'access content overview'
+  - 'access toolbar'
+  - 'administer entity_subqueue display'
+  - 'administer entity_subqueue form display'
+  - 'administer entityqueue'
+  - 'administer menu'
+  - 'create article content'
+  - 'create terms in tags'
+  - 'create tile content'
+  - 'delete any article content'
+  - 'delete any tile content'
+  - 'delete article revisions'
+  - 'delete own article content'
+  - 'delete own tile content'
+  - 'delete terms in tags'
+  - 'delete tile revisions'
+  - 'edit any article content'
+  - 'edit any tile content'
+  - 'edit own article content'
+  - 'edit own tile content'
+  - 'edit terms in tags'
+  - 'manipulate all entityqueues'
+  - 'manipulate entityqueues'
+  - 'revert article revisions'
+  - 'update featured_tiles entityqueue'

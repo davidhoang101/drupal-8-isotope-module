@@ -17,18 +17,18 @@
 				  itemSelector: '.tile-grid-item',
 				  layoutMode: 'masonry',
 				  masonry: {
-				    columnWidth: 110
+				    columnWidth: 100
 				  },
 				  cellsByRow: {
-				    columnWidth: 220,
-				    rowHeight: 220
+				    columnWidth: 200,
+				    rowHeight: 200
 				  },
 				  masonryHorizontal: {
-				    rowHeight: 110
+				    rowHeight: 100
 				  },
 				  cellsByColumn: {
-				    columnWidth: 220,
-				    rowHeight: 220
+				    columnWidth: 200,
+				    rowHeight: 200
 				  }
 				});
 

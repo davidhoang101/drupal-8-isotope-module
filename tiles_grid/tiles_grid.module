@@ -55,12 +55,17 @@ function tiles_grid_preprocess_node__tile__tiles_grid(&$variables) {
   $node = $variables['node'];
   $tag_icons = [];
   $tag_ids = [];
+  $with_article = false;
   //Get article's tags
   if($node->hasField('field_article')) {
     $article = $node->get('field_article')->referencedEntities();
 
-    $article = !empty($article) ? reset($article) : NULL;
-    $article_tags = !empty($article) ? $article->field_tags->getValue() : NULL;
+    if ($article) {
+      $with_article = true;
+      $article = reset($article);
+    }
+
+    $article_tags = !empty($article) ? $article->field_tags->getValue() : null;
 
     $tile_tags = $node->field_tags->getValue();
 
@@ -80,10 +85,15 @@ function tiles_grid_preprocess_node__tile__tiles_grid(&$variables) {
     }
   }
 
+
   //Get video url
   $video = $node->field_video_url->getValue();
   $variables['video_url'] = !empty($video[0]['uri']) ? $video[0]['uri'] : NULL;
   
+  //Get tile link
+  $tile_link = $node->field_tile_link->getValue();
+  $variables['tile_link'] = !empty($tile_link[0]['uri']) ? $tile_link[0]['uri'] : NULL;
+
   $variables['tag_icons'] = $tag_icons;
   $variables['tag_ids'] = !empty($tag_ids) ? implode(' ', $tag_ids) : '';
 }

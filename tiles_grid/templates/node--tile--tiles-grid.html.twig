@@ -89,8 +89,8 @@
               <polygon class="fill" points="70, 55 70, 145 145, 100" fill="#fff"/>
           </svg>
         </a>
-        <a href="#_" class="lightbox" id="video_{{ node.id }}">
-          <div id="videoModal" class="modal hide fade in" tabindex="-1" role="dialog" aria-labelledby="videoModalLabel" aria-hidden="false" style="display: block;">
+        <a href="#_" class="tile-modal" id="video_{{ node.id }}">
+          <div class="modal hide fade in tile-video-modal" tabindex="-1" role="dialog" aria-labelledby="" aria-hidden="false" style="display: block;">
             <div class="modal-header">
               <button type="button" class="close full-height" data-dismiss="modal" aria-hidden="true">X</button>
               <h3>{{ label }}</h3>
@@ -103,8 +103,15 @@
     </div>
     {% if label and not page %}
       <h2{{ title_attributes }}>
-        <a href="{{ path('entity.node.canonical', {'node':  node.field_article.entity.id}) }}" rel="bookmark">{{ label }}</a>
+        {% if tile_link is not empty %}
+          <a target="_blank" href="{{ tile_link }}" rel="bookmark">{{ label }}</a>
+        {% elseif node.field_article is not empty %}
+          <a href="{{ path('entity.node.canonical', {'node':  node.field_article.entity.id}) }}" rel="bookmark">{{ label }}</a>
+        {% else %}
+          <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+        {% endif %}
       </h2>
     {% endif %}
+    {{ content.body }}
   </article>
 </div>

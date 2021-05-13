@@ -5,6 +5,7 @@
   border: 1px solid #999;
   border-radius: 5px;
   background: #fff;
+  max-width: 220px;
 }
 
 h1 {
@@ -92,7 +93,7 @@ ul.tiles-grid-filters li:last-child{
 }
 
 /*Video modal */
-.lightbox {
+.tile-modal {
 	display: none;
 	position: fixed;
 	z-index: 999;
@@ -103,42 +104,43 @@ ul.tiles-grid-filters li:last-child{
 	left: 0;
 	background: rgba(0,0,0,0.8);
 }
-.lightbox:target {
+.tile-modal:target {
 	outline: none;
 	display: block;
 }
 
-#videoModal {
+.tile-video-modal {
   border-radius: 0;
   width: 870px;
-  margin:auto;}
-  #videoModal .modal-header {
-    background: #000;
-    border: 0;
-    color: #fff;
-    position: relative;
-		  height:35px; }
-    #videoModal .modal-header h3 {
-      font-size: 18px;
-      line-height: 22px;
-	  font-family:Arial, Helvetica, sans-serif;
-	  padding:5px;}
-  #videoModal .modal-body {
-    height: 489px;
-    padding: 0;
-    max-height: none;
-    overflow: hidden; }
-  #videoModal .modal-footer:empty {
-    display: none !important; }
-  #videoModal .close {
-    color: #fff;
-    font-size: 15px;
-    margin: 0;
-    opacity: 1;
-    position: absolute;
-    right: 0;
-    text-shadow: none;
-    top: 0;
-    width: 38px;
-    border-radius: 50%;
-  }
+  margin:auto;
+}
+.tile-video-modal .modal-header {
+  background: #000;
+  border: 0;
+  color: #fff;
+  position: relative;
+	  height:35px; }
+  .tile-video-modal .modal-header h3 {
+    font-size: 18px;
+    line-height: 22px;
+  font-family:Arial, Helvetica, sans-serif;
+  padding:5px;
+}
+.tile-video-modal .modal-body {
+  height: 489px;
+  padding: 0;
+  max-height: none;
+  overflow: hidden; 
+}
+.tile-video-modal .modal-footer:empty {
+    display: none !important; 
+}
+.tile-video-modal .close {
+  color: #fff;
+  font-size: 15px;
+  margin: 0;
+  position: absolute;
+  right: 0;
+  top: 0;
+  border-radius: 50%;
+}
